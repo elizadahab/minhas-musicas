@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor-primaria: #a78bfa;
+  --cor-primaria-hover: #c4b5fd;
+  --cor-erro: #f87171;
+  --cor-sucesso: #4ade80;
+  --cor-texto: #ffffff;
+  --cor-texto-suave: rgba(255, 255, 255, 0.6);
+  --cor-campo: rgba(255, 255, 255, 0.08);
+  --cor-borda: rgba(255, 255, 255, 0.15);
+  --cor-card: rgba(50, 50, 50, 0.65);
+  --background-overlay: linear-gradient(
+      rgba(20, 20, 20, 0.75),
+      rgba(10, 10, 10, 0.85)
+  );
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #111;
+  color: var(--cor-texto);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+}
+
+input, select, textarea {
+  font-family: 'Outfit', sans-serif;
+}
