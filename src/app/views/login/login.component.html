@@ -1,0 +1,56 @@
+<div class="login-page">
+  <div class="card">
+
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+      </svg>
+      Login
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="entrar()">
+
+      <div class="field">
+        <input type="text" placeholder="Usuário" formControlName="usuario"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+
+      <div class="field">
+        <input
+          [type]="senhaVisivel ? 'text' : 'password'"
+          placeholder="Senha"
+          formControlName="senha"/>
+        <svg (click)="toggleSenha()" style="cursor:pointer"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+
+      <div class="row-mid">
+        <label>
+          <input type="checkbox" formControlName="lembrar"/>
+          Lembrar minha senha
+        </label>
+        <a routerLink="/recuperar-senha">Esqueci minha senha</a>
+      </div>
+
+      <div class="erro" *ngIf="erro">{{ erro }}</div>
+
+      <button type="submit" class="btn-login" [disabled]="carregando">
+        {{ carregando ? 'Entrando...' : 'Login' }}
+      </button>
+
+      <div class="footer-link">
+        Não tem uma conta?
+        <a routerLink="/cadastro">Cadastre-se</a>
+      </div>
+
+    </form>
+  </div>
+</div>
