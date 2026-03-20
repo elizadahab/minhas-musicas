@@ -1,1 +1,59 @@
-<p>recuperar-senha works!</p>
+<div class="recuperar-page">
+  <div class="card">
+
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="18" cy="16" r="3"/>
+      </svg>
+      Recuperar senha
+    </div>
+
+    <!-- Formulário -->
+    <ng-container *ngIf="!enviado">
+      <p class="descricao">
+        Informe seu email cadastrado e enviaremos as instruções para redefinir sua senha.
+      </p>
+
+      <form [formGroup]="form" (ngSubmit)="enviar()">
+
+        <div class="field" [class.invalido]="form.get('email')?.invalid && form.get('email')?.touched">
+          <input type="email" placeholder="Email" formControlName="email"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <span class="hint" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          Informe um email válido
+        </span>
+
+        <div class="erro" *ngIf="erro">{{ erro }}</div>
+
+        <button type="submit" class="btn-enviar" [disabled]="carregando">
+          {{ carregando ? 'Enviando...' : 'Enviar instruções' }}
+        </button>
+
+      </form>
+    </ng-container>
+
+    <!-- Mensagem de sucesso -->
+    <ng-container *ngIf="enviado">
+      <div class="sucesso">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <p>Email enviado com sucesso!</p>
+        <span>Verifique sua caixa de entrada e siga as instruções.</span>
+      </div>
+    </ng-container>
+
+    <div class="footer-link">
+      Lembrou a senha?
+      <a routerLink="/login">Fazer login</a>
+    </div>
+
+  </div>
+</div>
