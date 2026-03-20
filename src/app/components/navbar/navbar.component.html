@@ -1,0 +1,21 @@
+<nav class="navbar" *ngIf="isLogado">
+  <div class="navbar-brand" routerLink="/home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+    Minhas Músicas
+  </div>
+
+  <div class="navbar-links">
+    <a routerLink="/home" routerLinkActive="ativo">Home</a>
+    <a routerLink="/bandas" routerLinkActive="ativo">Bandas</a>
+  </div>
+
+    <div class="navbar-usuario">
+      <span class="home">{{ usuarioLogado?.usuario }}</span>
+      <button (click)="sair()">Sair</button>
+    </div>
+</nav>
+
