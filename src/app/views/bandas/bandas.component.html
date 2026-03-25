@@ -1,1 +1,66 @@
-<p>bandas works!</p>
+<div class="bandas-page">
+
+  <div class="bandas-header">
+    <h1>Bandas</h1>
+    <button class="btn-nova" (click)="registrarBanda()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nova Banda
+    </button>
+  </div>
+
+  <!-- Carregando -->
+  <div class="estado" *ngIf="carregando">
+    <p>Carregando...</p>
+  </div>
+
+  <!-- Erro -->
+  <div class="estado erro" *ngIf="erro">
+    <p>{{ erro }}</p>
+  </div>
+
+  <!-- Lista vazia -->
+  <div class="estado" *ngIf="!carregando && !erro && bandas.length === 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+    <p>Nenhuma banda cadastrada ainda.</p>
+    <button class="btn-nova" (click)="registrarBanda()">Cadastrar primeira banda</button>
+  </div>
+
+  <!-- Lista de bandas -->
+  <div class="bandas-grid" *ngIf="!carregando && bandas.length > 0">
+    <div
+      class="banda-card"
+      *ngFor="let banda of bandas"
+      (click)="verDetalhe(banda.id!)">
+
+      <div class="banda-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+
+      <div class="banda-info">
+        <h2>{{ banda.nome }}</h2>
+        <p class="resumo">{{ banda.resumo || 'Sem descrição' }}</p>
+        <div class="banda-meta">
+          <span>{{ banda.albuns.length || 0 }} álbuns</span>
+          <span *ngIf="banda.media">⭐ {{ banda.media | number:'1.1-1' }}</span>
+        </div>
+      </div>
+
+      <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+
+    </div>
+  </div>
+
+</div>

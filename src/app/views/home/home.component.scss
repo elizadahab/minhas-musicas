@@ -1,0 +1,81 @@
+.home-page {
+  min-height: calc(100vh - 60px);
+  background:
+    var(--background-overlay),
+    url('/assets/images/music-bg.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 48px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.menu-card {
+  background: var(--cor-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(70, 70, 70, 0.75);
+    border-color: var(--cor-primaria);
+    transform: translateY(-4px);
+  }
+
+  .menu-icon {
+    margin-bottom: 16px;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      color: var(--cor-primaria);
+    }
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}

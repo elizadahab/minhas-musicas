@@ -1,1 +1,84 @@
-<p>album-detalhe works!</p>
+<div class="detalhe-page">
+
+  <div class="estado" *ngIf="carregando">
+    <p>Carregando...</p>
+  </div>
+
+  <div class="estado erro" *ngIf="erro">
+    <p>{{ erro }}</p>
+  </div>
+
+  <ng-container *ngIf="album && !carregando">
+
+    <div class="detalhe-header">
+      <button class="btn-voltar" (click)="voltar()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Voltar
+      </button>
+    </div>
+
+    <div class="detalhe-card">
+
+      <div class="album-topo">
+        <div class="album-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <div>
+          <h1>{{ album.nome }}</h1>
+          <p class="meta">
+            {{ album.musicas.length || 0 }} músicas
+            <span *ngIf="album.duracaoTotal">
+              · {{ formatarDuracaoTotal(album.duracaoTotal) }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Avaliação -->
+      <div class="avaliacao-section">
+        <span class="avaliacao-label">Avaliar álbum:</span>
+        <div class="estrelas">
+          <span
+            *ngFor="let star of [1,2,3,4,5]"
+            class="estrela"
+            [class.ativa]="star <= (album.media || 0)"
+            (click)="avaliar(star)">
+            ★
+          </span>
+        </div>
+        <span class="media" *ngIf="album.media">
+          {{ album.media | number:'1.1-1' }}
+        </span>
+      </div>
+
+      <!-- Músicas -->
+      <div class="musicas-section">
+        <h2>Músicas</h2>
+
+        <div class="estado" *ngIf="album.musicas?.length === 0">
+          <p>Nenhuma música cadastrada.</p>
+        </div>
+
+        <div class="musicas-lista" *ngIf="album.musicas && album.musicas.length > 0">
+          <div
+            class="musica-item"
+            *ngFor="let musica of album.musicas; let i = index">
+            <span class="numero">{{ i + 1 }}</span>
+            <div class="musica-info">
+              <h3>{{ musica.nome }}</h3>
+              <p *ngIf="musica.descricaoResumida">{{ musica.descricaoResumida }}</p>
+            </div>
+            <span class="duracao">{{ formatarDuracao(musica.duracao) }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-container>
+
+</div>

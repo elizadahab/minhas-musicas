@@ -1,1 +1,84 @@
-<p>banda-detalhe works!</p>
+<div class="detalhe-page">
+
+  <!-- Carregando -->
+  <div class="estado" *ngIf="carregando">
+    <p>Carregando...</p>
+  </div>
+
+  <!-- Erro -->
+  <div class="estado erro" *ngIf="erro">
+    <p>{{ erro }}</p>
+  </div>
+
+  <ng-container *ngIf="banda && !carregando">
+
+    <div class="detalhe-header">
+      <button class="btn-voltar" (click)="voltar()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Voltar
+      </button>
+    </div>
+
+    <div class="detalhe-card">
+
+      <div class="banda-topo">
+        <div class="banda-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <h1>{{ banda.nome }}</h1>
+          <p class="resumo">{{ banda.resumo || 'Sem descrição' }}</p>
+        </div>
+      </div>
+
+      <!-- Avaliação -->
+      <div class="avaliacao-section">
+        <span class="avaliacao-label">Avaliar banda:</span>
+        <div class="estrelas">
+          <span
+            *ngFor="let star of [1,2,3,4,5]"
+            class="estrela"
+            [class.ativa]="star <= (banda.media || 0)"
+            (click)="avaliar(star)">
+            ★
+          </span>
+        </div>
+        <span class="media" *ngIf="banda.media">
+          {{ banda.media | number:'1.1-1' }}
+        </span>
+      </div>
+
+      <!-- Álbuns -->
+      <div class="albuns-section">
+        <h2>Álbuns</h2>
+
+        <div class="estado" *ngIf="banda.albuns?.length === 0">
+          <p>Nenhum álbum cadastrado.</p>
+        </div>
+
+        <div class="albuns-lista" *ngIf="banda.albuns && banda.albuns.length > 0">
+          <div
+            class="album-card"
+            *ngFor="let album of banda.albuns"
+            (click)="verAlbum(album.id!)">
+            <div class="album-info">
+              <h3>{{ album.nome }}</h3>
+              <span>{{ album.musicas.length || 0 }} músicas</span>
+            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-container>
+
+</div>

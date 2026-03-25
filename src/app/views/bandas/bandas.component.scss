@@ -1,0 +1,129 @@
+.bandas-page {
+  min-height: calc(100vh - 60px);
+  background:
+    var(--background-overlay),
+    url('/assets/images/music-bg.jpg') center/cover no-repeat;
+  padding: 40px 32px;
+}
+
+.bandas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+.btn-nova {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cor-primaria);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+
+  svg { width: 16px; height: 16px; }
+  &:hover { opacity: 0.85; }
+}
+
+.estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+
+  svg { width: 48px; height: 48px; }
+  p { font-size: 15px; }
+
+  &.erro p { color: var(--cor-erro); }
+}
+
+.bandas-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.banda-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--cor-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: var(--cor-primaria);
+    transform: translateX(4px);
+  }
+
+  .banda-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(167, 139, 250, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: var(--cor-primaria);
+    }
+  }
+
+  .banda-info {
+    flex: 1;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .resumo {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .banda-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .seta {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+  }
+}
